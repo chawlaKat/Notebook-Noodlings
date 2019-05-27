@@ -1,0 +1,13 @@
+@RELATION Arthurs_Knights
+
+@ATTRIBUTE name STRING
+@ATTRIBUTE title STRING
+@ATTRIBUTE braveryRating NUMERIC
+@ATTRIBUTE lifestatus {living,dead,unknown,other}
+
+@DATA
+King_Arthur,King-of-the-Britons,9,other
+Sir_Bedevere,The-Wise,5,other
+Sir_Lancelot,The-Brave,11,other
+Sir_Galahad,The-Pure,8,dead
+Sir_Robin,The-Not-Quite-So-Brave-As-Sir-Lancelot,1,dead

@@ -1,0 +1,13 @@
+@RELATION Aladdin_Characters
+
+@ATTRIBUTE name STRING
+@ATTRIBUTE title STRING
+@ATTRIBUTE braveryRating NUMERIC
+@ATTRIBUTE lifestatus {living,dead,unknown,other}
+
+@DATA
+Aladdin,Street-Rat,9,living
+Jasmine,Princess,10,living
+Jafar,Royal-Physir,4,other
+Sultan,Sultan,2,living
+Abu,Monkey,9,living
