@@ -8,7 +8,7 @@ To read the notebooks: click on the file. GitHub will display the notebook withi
 
 To play with or run the code: 
 - open the file in GitHub, then follow the link to Google Colaboratory
-- choose any cell and run it. Colab will ask if you want to reset the runtime. choose yes (unless that would interfere with something you're already working on, in which case, do this in a private browser).
+- choose any cell and run it. Colab will ask if you want to reset the runtime. check the box and choose "run anyway" (unless that would interfere with something you're already working on, in which case, do this in a private browser).
 - if the notebook relies on external files, they'll be stored in this repo, in the "files" folder. clone it to your machine, then upload it to the Colab environment.
 
 # What's what
