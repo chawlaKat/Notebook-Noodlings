@@ -6,7 +6,10 @@ My most recent project is data visualization for aslib.net; I'm working with Dr.
 # How to Use
 To read the notebooks: click on the file. GitHub will display the notebook within the browser.
 
-To play with or run the code: open the file in GitHub, then follow the link to Google Colaboratory. Any necessary files are listed at the top of the notebook and stored in the "files" directory in this repo.
+To play with or run the code: 
+- open the file in GitHub, then follow the link to Google Colaboratory
+- choose any cell and run it. Colab will ask if you want to reset the runtime. choose yes (unless that would interfere with something you're already working on, in which case, do this in a private browser).
+- if the notebook relies on external files, they'll be stored in this repo, in the "files" folder. clone it to your machine, then upload it to the Colab environment.
 
 # What's what
 Altair with Flair: working through altair tutorials (also, learning how to use colab)
