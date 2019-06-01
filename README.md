@@ -6,6 +6,8 @@ My most recent project is data visualization for aslib.net; I'm working with Dr.
 # How to Use
 To read the notebooks: click on the file. GitHub will display the notebook within the browser.
 
+Alternately, if you've cloned the repo, navigate to Google Colaboratory and uploade the desired file.
+
 To play with or run the code: 
 - open the file in GitHub, then follow the link to Google Colaboratory
 - choose any cell and run it. Colab will ask if you want to reset the runtime. check the box and choose "run anyway" (unless that would interfere with something you're already working on, in which case, do this in a private browser using a separate google account).
