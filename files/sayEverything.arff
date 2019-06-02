@@ -1,6 +1,6 @@
-@RELATION Arthurs_Knights
+@RELATION Characters
 
-@ATTRIBUTE name MOVIE
+@ATTRIBUTE movie STRING
 @ATTRIBUTE name STRING
 @ATTRIBUTE title STRING
 @ATTRIBUTE braveryRating NUMERIC
