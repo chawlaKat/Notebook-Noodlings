@@ -9,7 +9,9 @@ Original file is located at
 <h2>Goal: Move .arff data into a dataframe</h2>
 
 Functionality: <br>
-Given an arff file, remove the attribute data types and create a pandas DataFrame
+*  Given an arff file, remove the attribute data types and create a pandas DataFrame
+*  Format comparison for "where_equals" data filtering
+
 
 Uses files (for testing):
 *   sayNi.arff
@@ -24,9 +26,8 @@ Future work:
 Notes: 
 
 *  Variable declarations and assignments may be out of order, because I moved the cells around
-* Static copy saved at (private repo): https://github.com/chawlaKat/aslib-visualization
 
-**bold text**<h4>Imports</h4>
+<h4>Imports</h4>
 
 Commented so it works as an imported module. If running this alone, check that liac_arff has been installed.
 """
@@ -82,6 +83,8 @@ def get_first(tuple_list):
 #attribute_names = get_first(my_loaded_file['attributes'])
 #attribute_names
 
+"""Given data and a list of column headers, constructs a dataframe."""
+
 def to_dataframe(data, cols):
   dataframe = pd.DataFrame(data, columns = cols);
   return dataframe;
@@ -92,7 +95,10 @@ def to_dataframe(data, cols):
 
 # to_dataframe(ni_data, ni_cols)
 
-"""<h4>Primary Method</h4>"""
+"""<h4>Primary Methods</h4>
+
+Given an .arff file, return a data frame
+"""
 
 def arff_to_dataframe(filename):
   loaded = open_file(filename);
@@ -105,12 +111,25 @@ def arff_to_dataframe(filename):
   return frame;
 
 #test
-arff_to_dataframe('sayNi.arff')
+#knightFrame = arff_to_dataframe('sayNi.arff')
 
-"""Given data and a list of column headers, constructs a dataframe.
+#knightFrame
 
-<h3>This is where I noodled around, so I knew how the bits worked and how they fit together</h3>
-"""
+"""Given a dataframe, column name, and something to compare to, return the relevant entries"""
+
+def where_equals(dataframe, column, is_equal_to):
+  source_column = dataframe[column]
+  where_clause = source_column == is_equal_to
+  
+  matching_data = dataframe.loc[where_clause]
+  
+  return (matching_data);
+
+#test
+# deadKnightFrame = where_equals(knightFrame, 'lifestatus', 'dead')
+# deadKnightFrame
+
+"""<h3>This is where I noodled around, so I knew how the bits worked and how they fit together</h3>"""
 
 # #change vars to open different file
 # filename = "sayNi.arff";
