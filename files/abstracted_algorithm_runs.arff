@@ -1,0 +1,33 @@
+@RELATION SampleRuns
+
+@ATTRIBUTE instance_id STRING
+@ATTRIBUTE repetition NUMERIC
+@ATTRIBUTE algorithm STRING
+@ATTRIBUTE runtime NUMERIC
+@ATTRIBUTE runstatus {ok, timeout, memout, not_applicable, crash, other}
+
+@DATA
+Instance_0,1,algorithm_0,3600,memout
+Instance_0,1,algorithm_1,3600,memout
+Instance_0,1,id_algorithm_0,311.863,ok
+Instance_0,1,id_algorithm_1,3600,timeout
+Instance_1,1,algorithm_0,3600,memout
+Instance_1,1,algorithm_1,3600,memout
+Instance_1,1,id_algorithm_0,78.121,ok
+Instance_1,1,id_algorithm_1,600.402,ok
+Instance_2,1,algorithm_0,3600,memout
+Instance_2,1,algorithm_1,3600,memout
+Instance_2,1,id_algorithm_0,0.012,ok
+Instance_2,1,id_algorithm_1,60.72,ok
+Instance_3,1,algorithm_0,3600,memout
+Instance_3,1,algorithm_1,92.986,ok
+Instance_3,1,id_algorithm_0,2031.039,ok
+Instance_3,1,id_algorithm_1,141.857,ok
+Instance_4,1,algorithm_0,3600,memout
+Instance_4,1,algorithm_1,3600,memout
+Instance_4,1,id_algorithm_0,422.53,ok
+Instance_4,1,id_algorithm_1,3600,timeout
+Instance_5,1,algorithm_0,182.019,ok
+Instance_5,1,algorithm_1,3600,memout
+Instance_5,1,id_algorithm_0,66.988,ok
+Instance_5,1,id_algorithm_1,249.488,ok
