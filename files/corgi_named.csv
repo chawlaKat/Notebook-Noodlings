@@ -1,9 +1,9 @@
-Name,Source,Is this Real or Not Real?,Cuteness
-Holly,Queen of England,Real,7
-Ralph,Instagram,Real,7
-"Molly (""Thing of Evil"")",Stephen King,Real,9
-Ein,Cowboy Bebop,Not Real,11
-Loki,Instagram,Real,8
-Rufus,Amazon.com,Real,9
-Sutter Brown,Jerry Brown (gov of Cali),Real,8
-Hope Corgi,DC Comics,Not Real,11
+Name,Source,Is this Real or Not Real?,Cuteness,Arbitrary numbers 1-5
+Holly,Queen of England,Real,7,1
+Ralph,Instagram,Real,7,2
+"Molly (""Thing of Evil"")",Stephen King,Real,9,3
+Ein,Cowboy Bebop,Not Real,11,4
+Loki,Instagram,Real,8,5
+Rufus,Amazon.com,Real,9,1
+Sutter Brown,Jerry Brown (gov of Cali),Real,8,2
+Hope Corgi,DC Comics,Not Real,11,3
