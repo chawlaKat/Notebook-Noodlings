@@ -18,18 +18,21 @@ To play with or run the code:
 # What's what
 aslib interactions table of contents: describes each notebook and reference in detail, with some example graphics
 
-Altair with Flair: working through altair tutorials (also, learning how to use colab)
+<a href="https://colab.research.google.com/github/chawlaKat/Notebook-Noodlings/blob/master/Altair_with_Flair.ipynb">Altair with Flair</a>: working through altair tutorials (also, learning how to use colab) 
 
-Bark to Byte: moving data from a .arff file into a pandas dataframe
+<a href="https://colab.research.google.com/github/chawlaKat/Notebook-Noodlings/blob/master/Bark_to_Byte.ipynb">Bark to Byte</a>
+: moving data from a .arff file into a pandas dataframe 
 
-Get Scattered: creating a dynamic Altair scatter plot, part 1
+<a href="https://colab.research.google.com/github/chawlaKat/Notebook-Noodlings/blob/master/Get_Scattered.ipynb">Get Scattered</a>: creating a dynamic Altair scatter plot, part 1 
 
-Get Scattered Long: creating a scatter plot, part 1 continued
+<a href="https://colab.research.google.com/github/chawlaKat/Notebook-Noodlings/blob/master/Get_Scattered_Long.ipynb">Get Scattered Long</a>: creating a scatter plot, part 1 continued
 
-Get Scattered Fancy: creating a scatter plot, part 2
+<a href="
+https://colab.research.google.com/github/chawlaKat/Notebook-Noodlings/blob/master/Get_Scattered_Fancy.ipynb">Get Scattered Fancy</a>: creating a scatter plot, part 2
 
-Pandas and corgis: working through pandas tutorials
+<a href="https://colab.research.google.com/github/chawlaKat/Notebook-Noodlings/blob/master/Pandas_and_corgis.ipynb">Pandas and corgis</a>: working through pandas tutorials
 
-Poster Samples: choosing and creating graphics for the 9/2019 research poster
+<a href="https://colab.research.google.com/github/chawlaKat/Notebook-Noodlings/blob/master/Poster_Samples.ipynb">Poster Samples</a>: choosing and creating graphics for the 9/2019 research poster
 
-Scatter in Practice: a notebook for testing large graphs
+<a href = "https://colab.research.google.com/github/chawlaKat/Notebook-Noodlings/blob/master/Scatter_in_Practice.ipynb">Scatter in Practice</a>: a notebook for testing large graphs 
+
