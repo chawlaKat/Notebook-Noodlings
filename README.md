@@ -27,8 +27,7 @@ aslib interactions table of contents: describes each notebook and reference in d
 
 <a href="https://colab.research.google.com/github/chawlaKat/Notebook-Noodlings/blob/master/Get_Scattered_Long.ipynb">Get Scattered Long</a>: creating a scatter plot, part 1 continued
 
-<a href="
-https://colab.research.google.com/github/chawlaKat/Notebook-Noodlings/blob/master/Get_Scattered_Fancy.ipynb">Get Scattered Fancy</a>: creating a scatter plot, part 2
+<a href="https://colab.research.google.com/github/chawlaKat/Notebook-Noodlings/blob/master/Get_Scattered_Fancy.ipynb">Get Scattered Fancy</a>: creating a scatter plot, part 2
 
 <a href="https://colab.research.google.com/github/chawlaKat/Notebook-Noodlings/blob/master/Pandas_and_corgis.ipynb">Pandas and corgis</a>: working through pandas tutorials
 
