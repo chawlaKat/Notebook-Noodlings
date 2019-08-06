@@ -24,9 +24,9 @@ Bark to Byte: moving data from a .arff file into a pandas dataframe
 
 Get Scattered: creating a dynamic Altair scatter plot, part 1
 
-Get Scattered Fancy: creating a scatter plot, part 2
-
 Get Scattered Long: creating a scatter plot, part 1 continued
+
+Get Scattered Fancy: creating a scatter plot, part 2
 
 Pandas and corgis: working through pandas tutorials
 
