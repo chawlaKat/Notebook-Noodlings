@@ -20,11 +20,16 @@ import bark_to_byte as bb
 
 """#Helpers
 
-STUB: Check if current code will work or not
+Convert to dataframe
 """
 
-def should_run(src):
-  df = bb.arff_to_dataframe(src)
+def convert_to_dataframe(file_name):
+  df = bb.arff_to_dataframe(file_name)
+  return df
+
+"""STUB: Check if current code will work or not"""
+
+def should_run(df):
   columns = list(df.columns)
   if ('runtime' in columns):
     return True
@@ -33,16 +38,14 @@ def should_run(src):
 
 """STUB: Format data"""
 
-def format_data(src):
-  
-  real_df = bb.arff_to_dataframe(src)
+def format_data(df):
   formatted_df = None
 
   # formatting for FOLD technique
   # set up so each instance has only one row, with columns for (Column x Algorithm)
 
   # reorganized using multi-indexing
-  df_by_instance = real_df.set_index(['instance_id', 'algorithm']).unstack()
+  df_by_instance = df.set_index(['instance_id', 'algorithm']).unstack()
 
   # figure out what the new headers should be
   flattened_headers = []
@@ -59,8 +62,7 @@ def format_data(src):
 
 """STUB: Get required info for graph setup"""
 
-def get_graphable_columns(src, solution_measure):
-  df = bb.arff_to_dataframe(src)
+def get_graphable_columns(df, solution_measure):
   algs = list(df['algorithm'].unique())
   cols = list(map(lambda al:(solution_measure+'_'+al), algs))
   return cols
@@ -106,7 +108,9 @@ def create_scatter(df, cols):
 
 """#Main Method"""
 
-def create_graph(source):
+def create_graph(arff_file_name):
+  source = convert_to_dataframe(arff_file_name)
+
   is_correct_sltn_measure = should_run(source)
 
   if(is_correct_sltn_measure):
@@ -115,27 +119,32 @@ def create_graph(source):
     graph = create_scatter(dataframe, axis_cols)
 
   else:
-    source = pd.DataFrame({
-      'a': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
-      'b': [28, 55, 43, 91, 81, 53, 19, 87, 52]
-    })
+    print(arff_file_name + ": Cannot create graph.")
 
-    graph = alt.Chart(source).mark_circle().encode(
-        x = 'a',
-        y = 'b'
-    )
+    # source = pd.DataFrame({
+    #   'placeholder_x': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
+    #   'placeholder_y': [28, 55, 43, 91, 81, 53, 19, 87, 52]
+    # })
+
+    # graph = alt.Chart(source).mark_circle().encode(
+    #     x = 'placeholder_x',
+    #     y = 'placeholder_y'
+    # )
+
+    graph = None
   
   return graph
 
 """#Tests"""
 
-# source = "abstracted_algorithm_runs.arff"
+# source = convert_to_dataframe("abstracted_algorithm_runs.arff")
 
 # format_data(source)
 
 # create_graph("abstracted_algorithm_runs.arff")
 
-# should_run("sayHey.arff")
+# source = convert_to_dataframe("sayHey.arff")
+# should_run(source)
 
-# create_graph("sayHey.arff")
+create_graph("sayHey.arff")
 
