@@ -9,6 +9,15 @@ Original file is located at
 The script that actually generates a graph. Must include the methods: 
 * create_graph()
 
+If the graph can be generated, returns an Altair scatter plot.<br>
+If not, prints error statement and returns an empty variable.
+
+To export:
+* Comment out pip install
+* Comment out tests
+* Download as .py
+* Upload file to graphgenerator environment
+
 #Imports
 """
 
@@ -146,5 +155,5 @@ def create_graph(arff_file_name):
 # source = convert_to_dataframe("sayHey.arff")
 # should_run(source)
 
-create_graph("sayHey.arff")
+#  create_graph("sayHey.arff")
 
