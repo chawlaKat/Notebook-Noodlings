@@ -10,7 +10,8 @@ The script that actually generates a graph. Must include the methods:
 * create_graph()
 
 If the graph can be generated, returns an Altair scatter plot.<br>
-If not, prints error statement and returns an empty variable.
+If not, prints error statement and returns an empty variable.<br> <br>
+Currently, it creates a graph comparing the first two algorithms' runtimes. It also displays a legend. The active tiles of the legend respond to user clicks, but not all titles are active yet. It is not linked to scatter yet.
 
 To export:
 * Comment out pip install
@@ -29,39 +30,59 @@ import bark_to_byte as bb
 
 """#Helpers
 
-Convert to dataframe
+Convert to dataframe<br>
+TODO: move bark_to_byte code here instead of importing module
 """
 
 def convert_to_dataframe(file_name):
   df = bb.arff_to_dataframe(file_name)
   return df
 
+"""STUB: Get performance measure; <i>should_run()</i> currently only checks for 'runtime'"""
+
+def get_performance_measure(df):
+
+  possible_measures = ['runtime', 'solution_quality', 'PAR10']
+
+  columns = list(df.columns)
+
+  for pm in possible_measures:
+    if (pm in columns):
+      return pm
+
+  return None
+
 """STUB: Check if current code will work or not"""
 
+# check if scenario uses runtime as performance measure
+# therefore also checks whether input is, in fact, a scenario
+
 def should_run(df):
-  columns = list(df.columns)
-  if ('runtime' in columns):
+  perf_measure = get_performance_measure(df)
+  
+  if (perf_measure == 'runtime'):
     return True
 
   return False
 
 """STUB: Format data"""
 
+# formatting for FOLD technique
+# set up so each instance has only one row, with columns for (Column x Algorithm)
+
 def format_data(df):
+  df_by_instance = None
   formatted_df = None
 
-  # formatting for FOLD technique
-  # set up so each instance has only one row, with columns for (Column x Algorithm)
-
-  # reorganized using multi-indexing
+  # reorganize using multi-indexing
   df_by_instance = df.set_index(['instance_id', 'algorithm']).unstack()
 
-  # figure out what the new headers should be
+  # flatten headers so we can remove the multi-index but keep the shape
   flattened_headers = []
+
   for entry in df_by_instance.columns.values:
     flattened_headers.append('_'.join(entry))
 
-  # assign correct headers
   df_by_instance.columns = flattened_headers
 
   # remove multi-index; make it a simple dataframe again
@@ -69,10 +90,19 @@ def format_data(df):
 
   return formatted_df
 
-"""STUB: Get required info for graph setup"""
+"""STUB: Get required info for graph setup<br>"""
+
+def get_algs(df):
+  algs = list(df['algorithm'].unique())
+  return algs
+
+"""Currently creates a list of columns of the format: <br>
+<i>solution\_measure</i> + '<i>\_</i>' + <i>algorithm</i><br>
+That is, it gets the runtime column for each algorithm in the scenario.
+"""
 
 def get_graphable_columns(df, solution_measure):
-  algs = list(df['algorithm'].unique())
+  algs = get_algs(df)
   cols = list(map(lambda al:(solution_measure+'_'+al), algs))
   return cols
 
@@ -92,28 +122,54 @@ def create_scatter(df, cols):
   # if ('b' in cols):
   #   y_axis = 'b'
 
-  # STUB: hardcode abstracted_algorithm_runs.arff columns
+  # STUB: first two graphable columns
   x_axis = cols[0]
   y_axis = cols[1]
-    
-  # # create the graph object
-  # gph = alt.Chart(df).mark_circle().encode(
-  #     x = x_axis,
-  #     y = y_axis
+
+  ## ...why does this work again???
+  ## value_x should be the list the user can select from right?
+  # gph = alt.Chart(df).mark_circle(size=60).transform_fold(
+  #     cols,
+  #     as_ = ['column_x', 'value_x']
+  # ).transform_fold(
+  #     cols,
+  #     as_ = ['column_y', 'value_y']
+  # ).encode(
+  #     x = x_axis+':Q',
+  #     y = y_axis+':Q'
   # )
 
-  gph = alt.Chart(df).mark_circle(size=60).transform_fold(
-      cols,
-      as_ = ['column_x', 'value_x']
-  ).transform_fold(
-      cols,
-      as_ = ['column_y', 'value_y']
-  ).mark_point().encode(
-      x = x_axis+':Q',
-      y = y_axis+':Q'
+  gph = alt.Chart(df).mark_circle(size = 60).encode(
+      x = x_axis + ':Q',
+      y = y_axis + ':Q'
   )
   
   return gph
+
+"""STUB: create algorithm selection legend"""
+
+def create_legend(src):
+
+  # set up user input listener (only selects one element at a time)
+  alg_select = alt.selection_single()
+
+  # set up listener response (change color on click)
+  alg_color = alt.condition(alg_select,
+                        alt.value('steelblue'),
+                        alt.value('lightgray'))
+
+  # create graph
+  lgd = alt.Chart(src).mark_rect().encode(
+      y = 'algorithm:N',
+      x = 'algorithm:N'
+  )
+
+  # activate listener
+  lgd_listening = lgd.encode(
+      color = alg_color
+  ).add_selection(alg_select)
+
+  return lgd_listening
 
 """#Main Method"""
 
@@ -123,23 +179,16 @@ def create_graph(arff_file_name):
   is_correct_sltn_measure = should_run(source)
 
   if(is_correct_sltn_measure):
+    sltn_measure = get_performance_measure(source)
     dataframe = format_data(source)
-    axis_cols = get_graphable_columns(source, 'runtime')
-    graph = create_scatter(dataframe, axis_cols)
+    axis_cols = get_graphable_columns(source, sltn_measure)
+    scatter = create_scatter(dataframe, axis_cols)
+    legend = create_legend(source)
+
+    graph = legend | scatter
 
   else:
     print(arff_file_name + ": Cannot create graph.")
-
-    # source = pd.DataFrame({
-    #   'placeholder_x': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
-    #   'placeholder_y': [28, 55, 43, 91, 81, 53, 19, 87, 52]
-    # })
-
-    # graph = alt.Chart(source).mark_circle().encode(
-    #     x = 'placeholder_x',
-    #     y = 'placeholder_y'
-    # )
-
     graph = None
   
   return graph
@@ -147,7 +196,6 @@ def create_graph(arff_file_name):
 """#Tests"""
 
 # source = convert_to_dataframe("abstracted_algorithm_runs.arff")
-
 # format_data(source)
 
 # create_graph("abstracted_algorithm_runs.arff")
@@ -157,3 +205,25 @@ def create_graph(arff_file_name):
 
 #  create_graph("sayHey.arff")
 
+# # how does python work: can you check a var's value when it's assigned None?
+# # yes
+
+# empty_var = None
+# if (empty_var == 'twenty-two'):
+#   print("entered if")
+# else:
+#   print("entered else")
+
+# source = convert_to_dataframe("abstracted_algorithm_runs.arff")
+# legend = create_legend(source)
+
+# alg_select = alt.selection_single()
+# alg_color =     alg_color = alt.condition(alg_select,
+#                           alt.value('steelblue'),
+#                           alt.value('lightgray'))
+
+# legend_colored = legend.encode(color = alg_color)
+
+# legend_intacv = legend_colored.add_selection(alg_select)
+
+# legend_intacv
